@@ -10,12 +10,19 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @AllArgsConstructor
 public class QuizService {
 
     private QuizRepository quizRepository;
     private QuizMapper quizMapper;
+
+    public ResponseEntity<List<QuizResponseDto>> getAllQuizzes(){
+        List<Quiz> quizzesList = quizRepository.findAll();
+        return new ResponseEntity<List<QuizResponseDto>>(quizMapper.entityToResponseDto(quizzesList), HttpStatus.OK);
+    }
 
     public ResponseEntity<QuizResponseDto> createQuiz(QuizRequestDto quizRequestDto) {
         Quiz quiz = quizMapper.requestDtoToEntity(quizRequestDto);
