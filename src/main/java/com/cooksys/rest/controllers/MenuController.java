@@ -1,7 +1,5 @@
 package com.cooksys.rest.controllers;
 
-import com.cooksys.rest.dtos.MenuRequestDto;
-import com.cooksys.rest.dtos.MenuResponseDto;
 import com.cooksys.rest.services.MenuService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
