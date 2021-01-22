@@ -1,6 +1,5 @@
 package com.cooksys.rest.entities;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -8,18 +7,19 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-@AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-public class Item {
+
+public class Quiz {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue
     private Long id;
 
-    private String text;
+    @Column(nullable = false)
+    private String name;
 
-    @ManyToOne
-    private Menu menu;
+    @OneToMany(mappedBy = "quiz", cascade = CascadeType.All)
+    private List<Question> questions;
 }

@@ -2,8 +2,6 @@ package com.cooksys.rest.services;
 
 import com.cooksys.rest.dtos.MenuRequestDto;
 import com.cooksys.rest.dtos.MenuResponseDto;
-import com.cooksys.rest.entities.Item;
-import com.cooksys.rest.entities.Menu;
 import com.cooksys.rest.mappers.MenuMapper;
 import com.cooksys.rest.repository.MenuRepository;
 import lombok.AllArgsConstructor;
