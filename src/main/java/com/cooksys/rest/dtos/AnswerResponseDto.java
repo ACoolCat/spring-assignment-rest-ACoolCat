@@ -8,7 +8,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class QuestionResponseDto {
+public class AnswerResponseDto {
     private Long id;
     private String answerText;
     private Boolean isCorrect;
