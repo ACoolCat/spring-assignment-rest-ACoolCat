@@ -24,4 +24,6 @@ public class Quiz {
 
     @OneToMany(mappedBy = "quiz", cascade = CascadeType.ALL)
     private List<Question> questions;
+
+    private boolean deleted;
 }
