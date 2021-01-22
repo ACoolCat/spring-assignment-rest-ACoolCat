@@ -1,5 +1,7 @@
 package com.cooksys.rest.controllers;
 
+import com.cooksys.rest.dtos.QuizRequestDto;
+import com.cooksys.rest.dtos.QuizResponseDto;
 import com.cooksys.rest.services.MenuService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -9,16 +11,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(value = "menu")
-public class MenuController {
+public class QuizController {
 
-    private MenuService menuService;
+    private MenuService quizService;
 
-    public MenuController(MenuService menuService) {
-        this.menuService = menuService;
+    public QuizController(QuizService quizService) {
+        this.quizService = quizService;
     }
 
     @PostMapping("")
-    public ResponseEntity<MenuResponseDto> createMenu(@RequestBody MenuRequestDto menuRequestDto){
-        return menuService.createMenu(menuRequestDto);
+    public ResponseEntity<QuizResponseDto> createQuiz(@RequestBody QuizRequestDto quizRequestDto){
+        return quizService.createMenu(quizRequestDto);
     }
 }
