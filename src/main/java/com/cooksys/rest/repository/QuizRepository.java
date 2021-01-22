@@ -1,8 +1,9 @@
 package com.cooksys.rest.repository;
 
+import com.cooksys.rest.entities.Quiz;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface MenuRepository extends JpaRepository<Menu, Long> {
+public interface QuizRepository extends JpaRepository<Quiz, Long> {
 }
