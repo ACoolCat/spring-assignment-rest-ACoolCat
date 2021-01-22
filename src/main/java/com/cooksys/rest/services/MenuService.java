@@ -1,6 +1,5 @@
 package com.cooksys.rest.services;
 
-import com.cooksys.rest.mappers.MenuMapper;
 import com.cooksys.rest.repository.MenuRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;

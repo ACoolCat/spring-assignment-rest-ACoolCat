@@ -5,7 +5,7 @@ import com.cooksys.rest.dtos.QuizResponseDto;
 import com.cooksys.rest.entities.Quiz;
 import org.mapstruct.Mapper;
 
-@Mapper(componentModel="spring", uses = ItemMapper.class)
+@Mapper(componentModel="spring", uses = QuizMapper.class)
 public interface QuizMapper {
 
     Quiz requestDtoToEntity(QuizRequestDto quizRequestDto);
