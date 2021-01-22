@@ -2,8 +2,7 @@ package com.cooksys.rest.services;
 
 import com.cooksys.rest.dtos.QuizRequestDto;
 import com.cooksys.rest.dtos.QuizResponseDto;
-import com.cooksys.rest.entities.Question;
-import com.cooksys.rest.entities.Quiz;
+import com.cooksys.rest.entities.*;
 import com.cooksys.rest.mappers.QuizMapper;
 import com.cooksys.rest.repository.QuizRepository;
 import lombok.AllArgsConstructor;
@@ -21,13 +20,13 @@ public class QuizService {
     public ResponseEntity<QuizResponseDto> createQuiz(QuizRequestDto quizRequestDto) {
         Quiz quiz = quizMapper.requestDtoToEntity(quizRequestDto);
 
-        for(Question question : quiz.getQuestion()) {
+        for(Question question : quiz.getQuestions()) {
             question.setQuiz(quiz);
+            for(Answer answer : question.getAnswers()){
+                answer.setQuestion(question);
+            }
         }
 
-        for(Answer answer : question.getAnswer()){
-            answer.setQuestion(question)
-        }
 
         Quiz savedQuiz = quizRepository.saveAndFlush(quiz);
         return new ResponseEntity<>(quizMapper.entityToResponseDto(savedQuiz), HttpStatus.CREATED);

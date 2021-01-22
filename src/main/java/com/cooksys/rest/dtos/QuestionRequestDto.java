@@ -11,5 +11,5 @@ import java.util.List;
 @NoArgsConstructor
 public class QuestionRequestDto {
     private String questionText;
-    private List<QuestionResponseDto> answers;
+    private List<AnswerRequestDto> answers;
 }
