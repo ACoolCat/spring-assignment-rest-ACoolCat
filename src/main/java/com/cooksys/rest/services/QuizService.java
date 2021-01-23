@@ -29,6 +29,7 @@ public class QuizService {
         return optionalQuiz.get();
     }
 
+
     public ResponseEntity<List<QuizResponseDto>> getAllQuizzes(){
         List<Quiz> quizzesList = quizRepository.findAll();
         return new ResponseEntity<List<QuizResponseDto>>(quizMapper.entityToResponseDto(quizzesList), HttpStatus.OK);
@@ -43,8 +44,6 @@ public class QuizService {
                 answer.setQuestion(question);
             }
         }
-
-
         Quiz savedQuiz = quizRepository.saveAndFlush(quiz);
         return new ResponseEntity<>(quizMapper.entityToResponseDto(savedQuiz), HttpStatus.CREATED);
     }
@@ -53,5 +52,22 @@ public class QuizService {
         Quiz quizToDelete = getQuiz(id);
         quizRepository.delete(quizToDelete);
         return quizMapper.entityToResponseDto(quizToDelete);
+    }
+
+
+    public QuizResponseDto updateQuiz(Long id, QuizRequestDto quizRequestDto) throws NotFoundException {
+        Optional<Quiz> optionalQuiz = quizRepository.findById(id);
+        if(optionalQuiz.isEmpty()){
+            throw new NotFoundException("No Quiz found by id " + id);
+        }
+        Quiz quizToUpdate = getQuiz(id);
+        quizToUpdate.setName(quizRequestDto.getName());
+        return quizMapper.entityToResponseDto(quizRepository.saveAndFlush(quizToUpdate));
+    }
+
+
+    public QuizResponseDto getQuestion(Long id) throws NotFoundException {
+        Quiz quizQuestions = getQuiz(id);
+        return quizMapper.entityToResponseDto(quizQuestions);
     }
 }

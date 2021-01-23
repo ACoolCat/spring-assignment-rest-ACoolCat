@@ -4,7 +4,6 @@ import com.cooksys.rest.dtos.QuizRequestDto;
 import com.cooksys.rest.dtos.QuizResponseDto;
 import com.cooksys.rest.services.QuizService;
 import javassist.NotFoundException;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -35,7 +34,14 @@ public class QuizController {
         return quizService.deleteQuiz(id);
     }
 
+    @PatchMapping("/{id}/rename/{newName}")
+    public QuizResponseDto updateQuiz(@PathVariable Long id, @RequestBody QuizRequestDto quizRequestDto) throws NotFoundException {
+        return quizService.updateQuiz(id, quizRequestDto);
+    }
 
-
+    @GetMapping("/{id}")
+    public QuizResponseDto getQuestion(@PathVariable Long id) throws NotFoundException {
+        return quizService.getQuestion(id);
+    }
 
 }
