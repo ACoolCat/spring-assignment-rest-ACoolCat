@@ -1,9 +1,11 @@
 package com.cooksys.rest.services;
 
+import com.cooksys.rest.dtos.QuestionResponseDto;
 import com.cooksys.rest.dtos.QuizRequestDto;
 import com.cooksys.rest.dtos.QuizResponseDto;
 import com.cooksys.rest.entities.*;
 import com.cooksys.rest.mappers.QuizMapper;
+import com.cooksys.rest.mappers.QuestionMapper;
 import com.cooksys.rest.repository.QuizRepository;
 import javassist.NotFoundException;
 import lombok.AllArgsConstructor;
@@ -11,8 +13,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 
 @Service
 @AllArgsConstructor
@@ -20,6 +24,7 @@ public class QuizService {
 
     private QuizRepository quizRepository;
     private QuizMapper quizMapper;
+    private QuestionMapper questionMapper;
 
     private Quiz getQuiz(Long id) throws NotFoundException {
         Optional<Quiz> optionalQuiz = quizRepository.findById(id);
@@ -69,5 +74,16 @@ public class QuizService {
     public QuizResponseDto getQuestion(Long id) throws NotFoundException {
         Quiz quizQuestions = getQuiz(id);
         return quizMapper.entityToResponseDto(quizQuestions);
+    }
+
+    public QuestionResponseDto getRandom(Long id){
+        Optional<Quiz> optionalQuizToSelectFrom = quizRepository.findById(id);
+        Quiz quizToSelectFrom = optionalQuizToSelectFrom.get();
+        List<Question> questionList = new ArrayList<>();
+        questionList = quizToSelectFrom.getQuestions();
+        Question returnQuestion;
+        Random rand = new Random();
+        returnQuestion = questionList.get(rand.nextInt(questionList.size()));
+        return questionMapper.entityToResponseDto(returnQuestion);
     }
 }

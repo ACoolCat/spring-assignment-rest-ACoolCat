@@ -1,5 +1,6 @@
 package com.cooksys.rest.controllers;
 
+import com.cooksys.rest.dtos.QuestionResponseDto;
 import com.cooksys.rest.dtos.QuizRequestDto;
 import com.cooksys.rest.dtos.QuizResponseDto;
 import com.cooksys.rest.services.QuizService;
@@ -39,9 +40,9 @@ public class QuizController {
         return quizService.updateQuiz(id, quizRequestDto);
     }
 
-    @GetMapping("/{id}")
-    public QuizResponseDto getQuestion(@PathVariable Long id) throws NotFoundException {
-        return quizService.getQuestion(id);
+    @GetMapping("/{id}/random")
+    public QuestionResponseDto getRandom(@PathVariable Long id) {
+        return quizService.getRandom(id);
     }
 
 }
