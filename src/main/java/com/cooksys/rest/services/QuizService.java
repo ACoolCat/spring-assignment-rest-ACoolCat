@@ -70,12 +70,6 @@ public class QuizService {
         return quizMapper.entityToResponseDto(quizRepository.saveAndFlush(quizToUpdate));
     }
 
-
-    public QuizResponseDto getQuestion(Long id) throws NotFoundException {
-        Quiz quizQuestions = getQuiz(id);
-        return quizMapper.entityToResponseDto(quizQuestions);
-    }
-
     public QuestionResponseDto getRandom(Long id){
         Optional<Quiz> optionalQuizToSelectFrom = quizRepository.findById(id);
         Quiz quizToSelectFrom = optionalQuizToSelectFrom.get();
@@ -86,4 +80,5 @@ public class QuizService {
         returnQuestion = questionList.get(rand.nextInt(questionList.size()));
         return questionMapper.entityToResponseDto(returnQuestion);
     }
+
 }
